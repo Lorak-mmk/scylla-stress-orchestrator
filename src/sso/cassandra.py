@@ -33,7 +33,7 @@ class Cassandra:
         ssh = self.__new_ssh(ip)
         ssh.update()
         print(f'    [{ip}] Installing Cassandra: started')
-        ssh.install_one('openjdk-16-jdk', 'java-16-openjdk')
+        ssh.install_one('openjdk-8-jdk', 'java-8-openjdk')
         ssh.install('wget')
         private_ip = self.__find_private_ip(ip)
         path_prefix = 'cassandra-raid/' if self.setup_raid else './'
@@ -50,8 +50,8 @@ class Cassandra:
             
             wget -q https://github.com/criteo/cassandra_exporter/releases/download/2.3.5/cassandra_exporter-2.3.5.jar
         """)
-        ssh.scp_to_remote("jvm11-server.options", f"{path_prefix}apache-cassandra-{self.cassandra_version}/conf/jvm11-server.options")
-        ssh.scp_to_remote("cassandra.yaml", f"{path_prefix}apache-cassandra-{self.cassandra_version}/conf/cassandra.yaml")
+        ssh.scp_to_remote("jvm8-server.options", f"{path_prefix}apache-cassandra-{self.cassandra_version}/conf/jvm.options")
+        ssh.scp_to_remote("cassandra3.yaml", f"{path_prefix}apache-cassandra-{self.cassandra_version}/conf/cassandra.yaml")
         ssh.scp_to_remote("cassandra-exporter.yml", f"config.yml")
         # FIXME - heap in MB * 2
         ssh.exec("""
