@@ -9,8 +9,8 @@
 #################
 
 ### Settings from https://www.scylladb.com/2018/07/06/scylla-vs-cassandra-ec2/
--Xms70G
--Xmx70G
+-Xms48G
+-Xmx48G
 
 ### G1 Settings
 -XX:+UseG1GC
