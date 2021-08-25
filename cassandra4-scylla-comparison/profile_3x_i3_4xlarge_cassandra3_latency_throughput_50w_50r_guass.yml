@@ -20,7 +20,15 @@ loadgenerator_user: ubuntu
 
 ssh_options: -i key -o StrictHostKeyChecking=no -o ConnectTimeout=60
 
+# Benchmark-specific configuration
+write_count: 1
+read_count: 1
+
 compaction_strategy: SizeTieredCompactionStrategy
 
 prometheus_user: ubuntu
 target_dataset_size_gb: 3000
+
+start_rate: 10000
+rate_increment: 10000
+duration_minutes: 30
